@@ -30,15 +30,15 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnUpdate();
 
-            $table->json('complaints');
-            $table->json('ill_anamnesis');
-            $table->json('check_up_results');
-            $table->json('life_anamnesis');
-            $table->json('allergological_anamnesis');
-            $table->json('objective_data');
-            $table->json('examination');
-            $table->json('treatment_plan');
-            $table->json('other');
+            $table->text('complaints');
+            $table->text('ill_anamnesis');
+            $table->text('check_up_results');
+            $table->text('life_anamnesis');
+            $table->text('allergological_anamnesis');
+            $table->text('objective_data');
+            $table->text('examination');
+            $table->text('treatment_plan');
+            $table->text('other');
 
             $table->foreignId('doctor_id')
                 ->nullable()
