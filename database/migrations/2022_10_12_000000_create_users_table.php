@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('iin');
             $table->string('fio');
-            $table->timestamps('birth_date');
+            $table->timestamp('birth_date');
 
             $table->enum('sex',
                 [
