@@ -14,6 +14,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Authorizable;
 
+    const ROLE_DOCTOR = 'DOCTOR';
+    const ROLE_PATIENT = 'PATIENT';
+    const ROLE_ADMIN = 'ADMIN';
+
+    const SEX_MALE = 'MALE';
+    const SEX_FEMALE = 'FEMALE';
+
     protected $fillable = [
         'id',
         'iin',
@@ -55,5 +62,38 @@ class User extends Authenticatable
     public function doctorRecords(): HasMany
     {
         return $this->hasMany(Record::class, 'id', 'doctor_id');
+    }
+
+    public function getRole(): string
+    {
+        switch ($this->status) {
+            case self::ROLE_DOCTOR:
+                return 'доктор';
+                break;
+            case self::ROLE_PATIENT:
+                return 'пациент';
+                break;
+            case self::ROLE_ADMIN:
+                return 'админ';
+                break;
+            default:
+                return 'не указан';
+                break;
+        }
+    }
+
+    public function getSex(): string
+    {
+        switch ($this->status) {
+            case self::SEX_MALE:
+                return 'мужчина';
+                break;
+            case self::SEX_FEMALE:
+                return 'женщина';
+                break;
+            default:
+                return 'не указан';
+                break;
+        }
     }
 }

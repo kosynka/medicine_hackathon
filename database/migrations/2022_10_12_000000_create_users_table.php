@@ -18,6 +18,14 @@ return new class extends Migration
 
             $table->string('iin');
             $table->string('fio');
+            $table->timestamps('birth_date');
+
+            $table->enum('sex',
+                [
+                    'male',
+                    'female',
+                ])->default('male');
+
             $table->string('email');
             $table->string('password');
 

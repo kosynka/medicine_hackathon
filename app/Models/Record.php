@@ -9,10 +9,6 @@ class Record extends Model
 {
     use HasFactory;
 
-    const STATUS_SEND = 'SEND';
-    const STATUS_SIGN = 'SIGN';
-    const STATUS_DECLINE = 'DECLINE';
-
     protected $fillable = [
         'id',
         'name',
