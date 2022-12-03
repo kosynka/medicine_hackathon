@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\UpdateUserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -28,12 +31,12 @@ class AuthController extends Controller
     public function signin(LoginRequest $request)
     {
         $data = $request->validated();
-        $admin = User::where('username', $data['username'])->first();
-        if (is_null($admin)) {
+        $user = User::where('email', $data['email'])->first();
+        if (is_null($user)) {
             return redirect()->back()->with('error', 'Неверные имя пользователя или пароль');
         }
 
-        if (!Hash::check($data['password'], $admin->password)) {
+        if (!Hash::check($data['password'], $user->password)) {
             return redirect()->back()->with('error', 'Неверные имя пользователя или пароль');
         }
 
@@ -42,9 +45,17 @@ class AuthController extends Controller
             $remember = true;
         }
 
-        Auth::guard('web')->login($admin, $remember);
+        Auth::guard('web')->login($user, $remember);
 
-        return redirect('/admin/doc');
+        if ($user->role == User::ROLE_PATIENT) {
+            return redirect('/patient/records');
+        }
+        else if ($user->role == User::ROLE_DOCTOR) {
+            return redirect('/doctor/records');
+        }
+        else {
+            return redirect()->back();
+        }
     }
 
     public function edit()
@@ -54,24 +65,25 @@ class AuthController extends Controller
         return view('admin.admin', compact('admin'));
     }
 
-    public function update(UpdateAdminRequest $request)
+    public function update(UpdateUserRequest $request)
     {
-        $admin = Auth::user();
+        $user = Auth::user();
 
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        
-        $admin->update($data);
+
+        $user = User::find($user->id);
+        $user->update($data);
 
         return redirect()->back()->with('message', 'Данные успешно изменены');
     }
 
-    public function store(UpdateAdminRequest $request)
+    public function store(UpdateUserRequest $request)
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
 
-        Admin::create($data);
+        User::create($data);
 
         return redirect()->back()->with('message', 'Данные успешно изменены');
     }
