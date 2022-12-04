@@ -17,6 +17,7 @@ Route::post('signin', [AuthController::class, 'signin']);
 Route::get('logout', [AuthController::class, 'logout']);
 Route::get('edit', [AuthController::class, 'edit']);
 Route::post('update', [AuthController::class, 'update']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('store', [AuthController::class, 'store']);
 
 Route::group(['middleware' => 'auth'], function () {

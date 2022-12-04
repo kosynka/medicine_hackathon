@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\UpdateUserRequest;
+use App\Http\Requests\Web\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -78,6 +79,25 @@ class AuthController extends Controller
         return redirect()->back()->with('message', 'Данные успешно изменены');
     }
 
+    public function register(RegisterRequest $request)
+    {
+        $data = $request->validated();
+
+        if ($data['email'] == User::where('email', $data['email'])->first()) {
+            return $this->errNotAcceptable('Данный email уже занят');
+        }
+
+        $data['password'] = Hash::make($data['password']);
+
+        $user = User::create($data);
+
+        if (isset($data['photo'])) {
+            $this->storeImage($data['photo'], $user->id);
+        }
+
+        return redirect('/login');
+    }
+
     public function store(UpdateUserRequest $request)
     {
         $data = $request->validated();
@@ -86,5 +106,10 @@ class AuthController extends Controller
         User::create($data);
 
         return redirect()->back()->with('message', 'Данные успешно изменены');
+    }
+
+    private function storeImage($image, $userId)
+    {
+        $this->imageRepository->store($image, $userId);
     }
 }
