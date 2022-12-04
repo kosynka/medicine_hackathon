@@ -4,7 +4,15 @@ use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'welcome']);
-Route::get('login', [AuthController::class, 'login']);
+// Route::get('login', [AuthController::class, 'login']);
+
+Route::get('/login', function(){
+    if(Auth::check()){
+        return redirect(route('user.profile'));
+    }
+    return view('login');
+})->name('login');
+
 Route::post('signin', [AuthController::class, 'signin']);
 Route::get('logout', [AuthController::class, 'logout']);
 Route::get('edit', [AuthController::class, 'edit']);
@@ -29,5 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('', [UserController::class, 'index']);
         Route::get('/{id}', [UserController::class, 'profile'])->name('user.profile');
+        
+
     });
 });
