@@ -18,14 +18,14 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view('admin.login');
+        return view('login');
     }
 
     public function logout()
     {
         Auth::guard('web')->logout();
 
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 
     public function signin(LoginRequest $request)
@@ -54,15 +54,15 @@ class AuthController extends Controller
             return redirect('/doctor/records');
         }
         else {
-            return redirect()->back();
+            return redirect('/record');
         }
     }
 
     public function edit()
     {
-        $admin = Auth::user();
+        $user = Auth::user();
 
-        return view('admin.admin', compact('admin'));
+        return view('user.profile', compact('user'));
     }
 
     public function update(UpdateUserRequest $request)
