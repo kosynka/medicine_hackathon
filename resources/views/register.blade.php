@@ -4,10 +4,10 @@
     <style>
         .whitebox {
             left: 35%;
-            width: 423px;
-            height: 423px;
-            left: 389px;
-            top: 177px;
+            width: 425px;
+            height: 600px;
+            left: 387px;
+            top: 138px;
 
             background: #FFFFFF;
             border-radius: 25px;
@@ -87,20 +87,26 @@
     <div class="whitebox">
         <form>
             <div class="container">
-                <h1 class="">Кirý</h1> 
+                <h1 class="">Tirkelý</h1> 
                 <div class="inpt">
-                    <label for="email"><b>Email</b></label>
+                    <label for="email"><b>T. A. J</b></label>
                     <input type="text" placeholder="Email eńgizińiz" name="email" required>    
                 </div>
                 <div class="inpt">
-                    <label for="psw"><b>Qupıa sóz</b></label>
+                    <label for="psw"><b>Telefon nomeri</b></label>
+                    <input type="password" placeholder="Qupıa sózdi eńgizińiz" name="psw" required>
+                </div>
+                <div class="inpt">
+                    <label for="psw"><b>Qupıa sózdi terińiz</b></label>
+                    <input type="password" placeholder="Qupıa sózdi eńgizińiz" name="psw" required>
+                </div>
+                <div class="inpt">
+                    <label for="psw"><b>Qupıa taǵy sózdi terińiz</b></label>
                     <input type="password" placeholder="Qupıa sózdi eńgizińiz" name="psw" required>
                 </div>
                 <div>
-                    <a class="passres" href="#">Qupıa sózdi umyttym</a>
-                    <a class="reglink" href="#">Tirkelý</a>
                 </div>
-                <button type="submit" class="registerbtn">Kirý</button>
+                <button type="submit" class="registerbtn">Tirkelý</button>
             </div>
           </form>
     </div>

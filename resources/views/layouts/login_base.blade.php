@@ -121,6 +121,7 @@
                     padding: 10px;
                     border-radius: 30px;
                     display: flex;
+                    margin-bottom: 40px;
                 }
                 .info-date {
                     background-color: #5E9690;
@@ -157,11 +158,15 @@
                 /* footer */
                 
                 .footer {
+                    padding-left: 50px;
+                    padding-right: 50px;
+                    padding-top: 50px;
                     background-color: #5E9690;
                     height: 120px;
                     width: 100%;
-                    align-items: flex-end;
-                    justify-content: space-between
+                    display: flex;
+                    justify-content: space-between;
+                    margin: auto;
                 }
             </style>
         @show
