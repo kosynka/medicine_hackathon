@@ -85,7 +85,9 @@
 @endsection
 @section('content')
     <div class="whitebox">
-        <form>
+        <form action="{{ url('/signin') }}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+
             <div class="container">
                 <h1 class="">Кirý</h1> 
                 <div class="inpt">
@@ -93,8 +95,8 @@
                     <input type="text" placeholder="Email eńgizińiz" name="email" required>    
                 </div>
                 <div class="inpt">
-                    <label for="psw"><b>Qupıa sóz</b></label>
-                    <input type="password" placeholder="Qupıa sózdi eńgizińiz" name="psw" required>
+                    <label for="password"><b>Qupıa sóz</b></label>
+                    <input type="password" placeholder="Qupıa sózdi eńgizińiz" name="password" required>
                 </div>
                 <div>
                     <a class="passres" href="#">Qupıa sózdi umyttym</a>

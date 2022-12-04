@@ -182,7 +182,7 @@
                     <span class="header-block">
                         <div>
                             <img src="{{ asset('/images/icons/person-icon18x18.png') }}" alt="person">
-                            <a href="#">Кirý</a> / <a href="#">Tirkelý</a>
+                            <a href="{{ url('/login') }}">Кirý</a> / <a href="{{ url('/register') }}">Tirkelý</a>
                         </div>
                         <div>
                             <img src="{{ asset('/images/icons/location-icon18x18.png') }}" alt="location">
@@ -196,11 +196,11 @@
                 @section('content')
                     <h1 class="title">Dárigermen emdel</h1>
                     <div class="choose">
-                        <a href="#" class="choose-first">
+                        <a href="{{ url('/login') }}" class="choose-first">
                             <img src="{{ asset('/images/doctor-1.jpg') }}" alt="doctor">
                             <div class="choose-rounded">Men dárigermin</div>
                         </a>
-                        <a href="#" class="choose-second">
+                        <a href="{{ url('/login') }}" class="choose-second">
                             <img src="{{ asset('/images/doctor-2.jpg') }}" alt="doctor">
                             <div class="choose-rounded">Men naýqaspyn</div>
                         </a>

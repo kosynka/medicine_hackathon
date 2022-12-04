@@ -14,9 +14,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Authorizable;
 
-    const ROLE_DOCTOR = 'DOCTOR';
-    const ROLE_PATIENT = 'PATIENT';
-    const ROLE_ADMIN = 'ADMIN';
+    const ROLE_DOCTOR = 'doctor';
+    const ROLE_PATIENT = 'patient';
+    const ROLE_ADMIN = 'admin';
 
     const SEX_MALE = 'MALE';
     const SEX_FEMALE = 'FEMALE';

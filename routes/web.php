@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\eb\DiseaseController;
+use App\Http\Controllers\eb\UserController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\RecordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'welcome']);
